@@ -16,3 +16,7 @@
 // 	all.add(post_one).save();
 // 	console.log(post_one);
 // });
+
+all.fetch().done(function () {
+	new AllView( { collection: all });
+});

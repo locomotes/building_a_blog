@@ -30,7 +30,7 @@ console.log('topofview');
 var AllView = Backbone.View.extend({
 	
 
-	el: '#post_container',
+	el: '#blog_container',
 
 	events: {
 
@@ -41,6 +41,9 @@ var AllView = Backbone.View.extend({
 
 	initialize: function(){
 		this.render();
+		this.collection.on('change', this.render, this);
+    this.collection.on('destroy', this.render, this);
+
 		console.log('initializing');
 	},
 
@@ -52,7 +55,8 @@ var AllView = Backbone.View.extend({
 
 		console.log(this.collection.toJSON());
 
-		this.$el.find("#post_feed_container").append(rendered);
+		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
+		return this;
 
 		console.log('redneckering');
 
@@ -86,7 +90,7 @@ var AllView = Backbone.View.extend({
 });
 
 // all.fetch().done(function () {
-	new AllView( { collection: all } )
+	// new AllView( { collection: all } )
 
 // });
 

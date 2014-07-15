@@ -27,7 +27,7 @@
 
     <div id="blog_container">
 
-        <div id="main">
+        <form id="main">
             <div id="post_container">
                 <div id="post_top">
                     <div id="title">
@@ -45,14 +45,15 @@
                         <input id="input_tags" placeholder="Tags?">
                     </div>
                     <div id="create">
-                        <div id="create_button">Create Post</div>
+                        <button id="create_button">Create Post
+                        </button>
                     </div>
                 </div>
             </div>
             <div id="post_feed_container">
                 <ul></ul>
             </div>
-        </div>
+        </form>
 
     </div>
 
@@ -60,12 +61,12 @@
 
     <script type="text/x-handlebars-template" id="posts_list">
         {{#each data}}
-            <li>{{ title }}</li>
-            <li>{{ content }}</li>
-            <li>{{ date }}</li>
-            <li>{{ status }}</li>
-            <li>{{ author }}</li>
-            <li>{{ tags }}</li>
+            <li>{{title}}</li>
+            <li>{{content}}</li>
+            <li>{{date}}</li>
+            <li>{{status}}</li>
+            <li>{{author}}</li>
+            <li>{{tags}}</li>
         {{/each}}
     </script>
 
