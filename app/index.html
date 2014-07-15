@@ -30,18 +30,27 @@
         <div id="main">
             <div id="post_container">
                 <div id="post_top">
-                    <div id="title"></div>
-                    <div id="author"></div>
+                    <div id="title">
+                        <input id="imput_title" placeholder="Title?">
+                    </div>
+                    <div id="author">
+                        <input id="imput_author" placeholder="Author?">
+                    </div>
                 </div>
-                <div id="post_mid"></div>
+                <div id="post_mid">
+                    <input id="imput_post" placeholder="Post Text Goes Here">
+                </div>
                 <div id="post_bottom">
-                    <div id="tags"></div>
+                    <div id="tags">
+                        <input id="imput_tags" placeholder="Tags?">
+                    </div>
                     <div id="create">
                         <div id="create_botton">Create Post</div>
                     </div>
                 </div>
             </div>
             <div id="post_feed_container">
+                <ul></ul>
             </div>
         </div>
 
@@ -49,14 +58,28 @@
 
     </div>
 
+    <script type="text/x-handlebars-template" id="alien_list">
+        {{#each data}}
+            <li>Hi, my name is {{ name }} and Im from {{ location }}</li>
+        {{/each}}
+    </script>
+
+    
+
+
+
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
+    <script src="../bower_components/backbone/backbone.js"></script>
+    <script src="../bower_components/handlebars/handlebars.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->
+        <script src="scripts/model.js"></script>
+        <script src="scripts/views.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>
