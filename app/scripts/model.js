@@ -34,17 +34,17 @@ var Post = Backbone.Model.extend ({
 		tags: ''
 	},
 
-	idAttribute: "_id",
+	// idAttribute: "_id",
 
-	initialize: function () {
-		var title = this.get('title');
-		var content = this.get('content');
-		var date = this.get('date');
-		var status = this.get('status');
-		var author = this.get('author');
-		var taga = this.get('tags');
+	// initialize: function () {
+	// 	var title = this.get('title');
+	// 	var content = this.get('content');
+	// 	var date = this.get('date');
+	// 	var status = this.get('status');
+	// 	var author = this.get('author');
+	// 	var taga = this.get('tags');
 		
-	}
+	// }
 
 });
 
@@ -55,17 +55,26 @@ var ALLposts = Backbone.Collection.extend ({
 
 var all = new ALLposts(); 
 
-var post_one = new Post({
-	title: "first post",
-		content: "Content of the post",
-		date: "Today's date",
-		status: "Published status",
-		author: "Jonathan Dickerson",
-		tags: "Generic tag"
-});
+// $("#create_button").click(function() {
 
-all.add(post_one).save();
+	// var post_one = new Post({
+	// 		title: "first post",
+	// 		content: "Content of the post",
+	// 		date: "Today's date",
+	// 		status: "Published status",
+	// 		author: "Jonathan Dickerson",
+	// 		tags: "Generic tag"
 
-console.log(post_one);
+
+	// });
+
+	
+
+// });
+
+console.log('modelsandbottles');
+
+
+
 
 

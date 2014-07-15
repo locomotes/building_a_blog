@@ -7,13 +7,12 @@
 // 		item.push(todo);
 // 		// console.log(item);
 
-$("#create_button").click(function() {
-	console.log(test);
-	// var test = new Alien ({
-	//  input_title:$('#input_title').val()
+// $("#create_button").click(function() {
+// 	var post_one = new Post({
 
-	// });
-	// $(".post_feed_container").append(template(ALien));
+// 	title: $('#input_title').val()
 
-
-});
+// 	});
+// 	all.add(post_one).save();
+// 	console.log(post_one);
+// });

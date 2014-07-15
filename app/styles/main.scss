@@ -4,15 +4,22 @@
 
 // Custom Styles
 
+header {
+    @include outer-container;
+    height: 50px;
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
 
 #blog_container {
   @include outer-container;
-  header {
-    @include span-columns(10);
-    @include shift(1);
-    height: 50px;
-    background-color: black;
-  }
+  // header {
+  //   @include span-columns(10);
+  //   @include shift(1);
+  //   height: 50px;
+  //   background-color: black;
+  // }
   #main {
     @include span-columns(10);
     @include shift(1);
@@ -58,7 +65,7 @@
           float: right;
           border: solid 1px red;
           text-align: center;
-          #create_botton {
+          #create_button {
             @include button(pill);
           }
         }
@@ -69,10 +76,12 @@
       border: solid 1px red;
     }
   }
-  footer {
-    @include span-columns(10);
-    @include shift(1);
+}
+
+footer {
+    @include outer-container;
     height: 50px;
     background-color: black;
+    color: white;
+    text-align: center;
   }
-}

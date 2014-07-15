@@ -25,13 +25,23 @@
 
 // });
 
+console.log('topofview');
+
 var AllView = Backbone.View.extend({
 	
 
-	el: $('#post_feed_container ul'),
+	el: '#post_container',
+
+	events: {
+
+		"click #create_button": "publishPost",
+		// "click #logout: logoutPage"
+
+	},
 
 	initialize: function(){
 		this.render();
+		console.log('initializing');
 	},
 
 	render: function(){
@@ -42,12 +52,41 @@ var AllView = Backbone.View.extend({
 
 		console.log(this.collection.toJSON());
 
-		this.$el.html(rendered)
-	}
+		this.$el.find("#post_feed_container").append(rendered);
+
+		console.log('redneckering');
+
+	},
+
+	publishPost: function(e){
+
+	e.preventDefault();
+	console.log("circle of life");
+		var post_one = new Post({
+			title: $('#input_title').val(),
+			content: $('#input_post').val(),
+			date: "date",
+			status: "published",
+			author: $('#input_author').val(),
+			tags: $('#input_tags').val()
+
+		});
+
+		all.add(post_one).save();
+		console.log('post_one');		
+
+	},
+
+	
+
+	// logoutPage: function(){
+	// 	new LogOutView();
+	// }
 
 });
 
-all.fetch().done(function () {
+// all.fetch().done(function () {
 	new AllView( { collection: all } )
 
-});
+// });
+
