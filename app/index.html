@@ -58,9 +58,14 @@
 
     </div>
 
-    <script type="text/x-handlebars-template" id="alien_list">
+    <script type="text/x-handlebars-template" id="posts_list">
         {{#each data}}
-            <li>Hi, my name is {{ name }} and Im from {{ location }}</li>
+            <li>{{ title }}</li>
+            <li>{{ content }}</li>
+            <li>{{ date }}</li>
+            <li>{{ status }}</li>
+            <li>{{ author }}</li>
+            <li>{{ tags }}</li>
         {{/each}}
     </script>
 
