@@ -1,29 +1,4 @@
 
-// var AllView = Backbone.View.extend({
-	
-
-// 	el: $('#post_feed_container ul'),
-
-// 	initialize: function(){
-// 		this.render();
-// 	},
-
-// 	render: function(){
-		
-
-// 		var template = Handlebars.compile($('#alien_list').html());
-
-// 		var rendered = template({data: this.collection.toJSON()});
-// 		console.log(this.collection.toJSON());
-// 		this.$el.html(rendered)
-// 	}
-
-// });
-
-// all.fetch().done(function () {
-// 	new AllView( { collection: all } )
-
-// });
 
 console.log('topofview');
 
@@ -48,9 +23,7 @@ var AllView = Backbone.View.extend({
 	},
 
 	render: function(){
-
 		var template = Handlebars.compile($('#posts_list').html());
-
 		var rendered = template({data: this.collection.toJSON()});
 
 		console.log(this.collection.toJSON());
@@ -63,9 +36,10 @@ var AllView = Backbone.View.extend({
 	},
 
 	publishPost: function(e){
-
 	e.preventDefault();
+
 	console.log("circle of life");
+
 		var post_one = new Post({
 			title: $('#input_title').val(),
 			content: $('#input_post').val(),
@@ -77,6 +51,7 @@ var AllView = Backbone.View.extend({
 		});
 
 		all.add(post_one).save();
+		
 		console.log('post_one');		
 
 	},
@@ -89,8 +64,4 @@ var AllView = Backbone.View.extend({
 
 });
 
-// all.fetch().done(function () {
-	// new AllView( { collection: all } )
-
-// });
 
