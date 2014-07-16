@@ -4,12 +4,26 @@
 
 // Custom Styles
 
+body{
+  background-color: #efefef;
+}
+
 header {
-    @include outer-container;
-    height: 50px;
-    background-color: black;
+    width: 100%;
+    height: 200px;
+    background-color: #3d5c6f;
     color: white;
     text-align: center;
+    margin: 0px;
+    h1 {
+      color: #ff6c00;
+    }
+    .style {
+      height: 25px; 
+      width: 100%;
+      // background-color: #99cfa9;
+      background-color: #99cfa9;
+    }
   }
 
 #blog_container {
@@ -20,50 +34,70 @@ header {
   //   height: 50px;
   //   background-color: black;
   // }
+  // background-color: #339a63;
   #main {
     @include span-columns(10);
     @include shift(1);
     border: solid 1px red;
     #post_container {
-      height: 375px;
+      height: 360px;
       border: solid 1px red;
       #post_top {
         @include span-columns(12);
         height: 75px;
-        border: solid 1px red;
+        // background-color: #339a63;
+        background-color:#a0b0c1;
         #title {
           @include span-columns(6);
           height: 65px; 
           float: left;
-          border: solid 1px red;
+          margin-top: 5px;
+          margin-left: 5px;
+          #input_title {
+            height: 40px;
+            width: 100%;
+          }
         }
         #author {
           @include span-columns(3);
-          height: 50px; 
+          height: 65px; 
           float: right;
-          border: solid 1px red;
+          margin-right: 5px;
+          margin-top: 5px;
+          #input_author {
+            height: 40px;
+            width: 100%;
+          }
         }
       }
       #post_mid {
         @include span-columns(12);
         height: 200px;
-        border: solid 1px red;
+        #input_post {
+            height: 200px;
+            width: 100%;
+        }
       }
       #post_bottom {
         @include span-columns(12);
-        height: 100px;
-        border: solid 1px red;
+        height: 85px;
+        background-color:#a0b0c1;
         #tags {
           @include span-columns(8);
+          margin-top: 15px;
           height: 65px; 
           float: left;
-          border: solid 1px red;
+          margin-left: 5px;
+          #input_tags {
+            height: 40px;
+            width: 100%;
+          }
         }
         #create {
           @include span-columns(2);
-          height: 50px; 
+          margin-top: 15px;
+          height: 65px; 
           float: right;
-          border: solid 1px red;
           text-align: center;
           #create_button {
             @include button(pill);
@@ -78,9 +112,17 @@ header {
 }
 
 footer {
-    @include outer-container;
-    height: 50px;
-    background-color: black;
+    width: 100%;
+    height: 150px;
+    // background-color: #42a2ce;
+    background-color: #555555;
     color: white;
     text-align: center;
+    margin: 0px;
+    .style {
+      height: 25px; 
+      width: 100%;
+      background-color: #99cfa9;
+      border-bottom: solid 2px #ff6c00;
+    }
   }

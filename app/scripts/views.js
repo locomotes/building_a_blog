@@ -58,7 +58,7 @@ var AllView = Backbone.View.extend({
 		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
 		return this;
 
-		console.log('redneckering');
+		console.log('rendering');
 
 	},
 
