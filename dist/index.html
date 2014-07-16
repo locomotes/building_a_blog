@@ -15,27 +15,64 @@
   </head>
   <body>
 
-    <div class="hero-unit">
-      <h1>'Allo, 'Allo!</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML5 Boilerplate</li>
-        <li>Normalize CSS</li>
+    
+    <header>
+        <div class="style"></div>
+        <h1>HEADA!</h1>
+    </header>
 
-        <li>Sass</li>
+    <div id="blog_container">
 
+        <form id="main">
+            <div id="post_container">
+                <div id="post_top">
+                    <div id="title">
+                        <input id="input_title" placeholder="Title" style="text-align: center">
+                    </div>
+                    <div id="author">
+                        <input id="input_author" placeholder="Author" style="text-align: center">
+                    </div>
+                </div>
+                <div id="post_mid">
+                    <input id="input_post" placeholder="Post Text Goes Here" style="text-align: center">
+                </div>
+                <div id="post_bottom">
+                    <div id="tags">
+                        <input id="input_tags" placeholder="Tags, Separated With Commas" style="text-align: center">
+                    </div>
+                    <div id="create">
+                        <button id="create_button">Create Post
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="post_feed_container">
+                <ul></ul>
+            </div>
+        </form>
 
-        <li>Modernizr</li>
-
-
-        <li>Bourbon & Neat</li>
-
-
-        <li>UnderscoreJS</li>
-
-      </ul>
-      <p>Don't forget to update your readme file!!</p>
     </div>
+
+    <footer>
+        <div class="style"></div>
+        <h1>FOOTA!</h1>
+    </footer>
+    
+
+    <script type="text/x-handlebars-template" id="posts_list">
+        {{#each data}}
+            <li>{{title}}</li>
+            <li>{{content}}</li>
+            <li>{{date}}</li>
+            <li>{{status}}</li>
+            <li>{{author}}</li>
+            <li>{{tags}}</li>
+        {{/each}}
+    </script>
+
+    
+
+
 
     <script src="scripts/vendor.js"></script>
 
