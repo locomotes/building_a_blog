@@ -1,3 +1,27 @@
+var PageRouter = Backbone.Router.extend({
+ 
+  routes: {
+    "": "home_page",
+    "posts_page/:id": "posts_page",
+  },
+ 
+  home_page: function () {
+    $('#full_posts_container').hide();
+    $('#post_feed_container').show();
+    console.log("I'm in the home page");
+  },
+ 
+  posts_page: function () {
+  	new WholePost({ collection: all });
+   //  $('#post_feed_container').hide();
+   //  $('#full_posts_container').show();
+  
+  },
+ 	
+});
+ 
+
+
 
 
 var Post = Backbone.Model.extend ({
@@ -22,7 +46,40 @@ var ALLposts = Backbone.Collection.extend ({
 var all = new ALLposts(); 
 
 
-console.log('modelsandbottles');
+
+
+
+
+
+var WholePost = Backbone.View.extend({
+
+	el: '#blog_container',
+
+	events: {
+
+		// "click #post_feed_container ul": "fullPost",
+	},
+
+	initialize: function(){
+		console.log("Whole Post Loaded");
+		this.render();
+		this.collection.on('change', this.render, this);
+    this.collection.on('destroy', this.render, this);
+    console.log("initialize");
+	},
+
+	render: function(){
+		var template = Handlebars.compile($('#entire_posts').html());
+		console.log(this.collection);
+		var rendered = template({data: this.collection.toJSON()});
+
+		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
+		return this;
+		console.log("rendering");
+	},
+
+	
+});
 
 
 
@@ -31,7 +88,47 @@ console.log('modelsandbottles');
 
 
 
-console.log('topofview');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var AllView = Backbone.View.extend({
 	
@@ -41,7 +138,7 @@ var AllView = Backbone.View.extend({
 	events: {
 
 		"click #create_button": "publishPost",
-		// "click #logout: logoutPage"
+		"click #post_feed_container ul a": "wholePost"
 
 	},
 
@@ -50,26 +147,25 @@ var AllView = Backbone.View.extend({
 		this.collection.on('change', this.render, this);
     this.collection.on('destroy', this.render, this);
 
-		console.log('initializing');
 	},
 
 	render: function(){
 		var template = Handlebars.compile($('#posts_list').html());
 		var rendered = template({data: this.collection.toJSON()});
 
+		this.$('#full_posts_container').hide();
+    this.$('#post_feed_container').show();
+
 		console.log(this.collection.toJSON());
 
 		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
 		return this;
 
-		console.log('rendering');
 
 	},
 
 	publishPost: function(e){
 	e.preventDefault();
-
-	console.log("circle of life");
 
 		var post_one = new Post({
 			title: $('#input_title').val(),
@@ -89,16 +185,35 @@ var AllView = Backbone.View.extend({
 
 	
 
-	// logoutPage: function(){
-	// 	new LogOutView();
-	// }
+	wholePost: function(e){
+		e.preventDefault();
+		var post_id = $(e.target).attr('id');
+		console.log(e.target);
+		console.log(post_id);
+		window.post_router.navigate('#posts_page/'+post_id, {trigger: true});
+	}
 
 });
+// var drink_id = $(event.target).attr('id');
+// window.whiskey_router.navigate('#edit/'+drink_id, {trigger: true});
 
-
+// post_router.navigate''
 
 
 
 all.fetch().done(function () {
 	new AllView( { collection: all });
+	window.post_router = new PageRouter();
+	Backbone.history.start();
+
 });
+
+
+
+
+
+// whiskey_list.fetch().done( function (){
+//   // Define Global Router && Start History
+//   window.whiskey_router = new WhiskeyRouter();
+//   Backbone.history.start();
+// });
