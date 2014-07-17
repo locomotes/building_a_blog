@@ -1,7 +1,4 @@
 
-
-console.log('topofview');
-
 var AllView = Backbone.View.extend({
 	
 
@@ -10,7 +7,7 @@ var AllView = Backbone.View.extend({
 	events: {
 
 		"click #create_button": "publishPost",
-		// "click #logout: logoutPage"
+		"click #post_feed_container ul a": "wholePost"
 
 	},
 
@@ -19,26 +16,25 @@ var AllView = Backbone.View.extend({
 		this.collection.on('change', this.render, this);
     this.collection.on('destroy', this.render, this);
 
-		console.log('initializing');
 	},
 
 	render: function(){
 		var template = Handlebars.compile($('#posts_list').html());
 		var rendered = template({data: this.collection.toJSON()});
 
+		this.$('#full_posts_container').hide();
+    this.$('#post_feed_container').show();
+
 		console.log(this.collection.toJSON());
 
 		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
 		return this;
 
-		console.log('rendering');
 
 	},
 
 	publishPost: function(e){
 	e.preventDefault();
-
-	console.log("circle of life");
 
 		var post_one = new Post({
 			title: $('#input_title').val(),
@@ -58,10 +54,16 @@ var AllView = Backbone.View.extend({
 
 	
 
-	// logoutPage: function(){
-	// 	new LogOutView();
-	// }
+	wholePost: function(e){
+		e.preventDefault();
+		var post_id = $(e.target).attr('id');
+		console.log(e.target);
+		console.log(post_id);
+		window.post_router.navigate('#posts_page/'+post_id, {trigger: true});
+	}
 
 });
+// var drink_id = $(event.target).attr('id');
+// window.whiskey_router.navigate('#edit/'+drink_id, {trigger: true});
 
-
+// post_router.navigate''

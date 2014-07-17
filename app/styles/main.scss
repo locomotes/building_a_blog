@@ -107,6 +107,20 @@ header {
     }
     #post_feed_container {
       border: solid 1px red;
+      text-align: center;
+      ul {
+        list-style: none;
+        padding-left: 0;
+        li {
+          color: #ff6c00;
+          text-decoration: none;
+          a {
+            color: #ff6c00;
+            text-decoration: none;
+            font-size: 40px;
+          }
+        }
+      }
     }
   }
 }
