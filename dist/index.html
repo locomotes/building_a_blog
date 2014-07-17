@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div id="post_mid">
-                    <input id="input_post" placeholder="Post Text Goes Here" style="text-align: center">
+                    <textarea id="input_post" placeholder="Post Text Goes Here" style="text-align: center"></textarea>
                 </div>
                 <div id="post_bottom">
                     <div id="tags">
@@ -49,6 +49,8 @@
             <div id="post_feed_container">
                 <ul></ul>
             </div>
+            <div id="full_posts_container">
+            </div>
         </form>
 
     </div>
@@ -60,6 +62,12 @@
     
 
     <script type="text/x-handlebars-template" id="posts_list">
+        {{#each data}}
+            <li><a id="{{_id}}" href="#">{{title}}</a></li>
+        {{/each}}
+    </script>
+
+    <script type="text/x-handlebars-template" id="entire_posts">
         {{#each data}}
             <li>{{title}}</li>
             <li>{{content}}</li>
