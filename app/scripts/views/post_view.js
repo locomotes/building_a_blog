@@ -7,29 +7,30 @@ var WholePost = Backbone.View.extend({
 		// "click #post_feed_container ul": "fullPost",
 	},
 
-	initialize: function(){
-		console.log("Whole Post Loaded");
-		this.render();
+	initialize: function(a){
 		this.collection.on('change', this.render, this);
     this.collection.on('destroy', this.render, this);
-    console.log("initialize");
+    this.options = a;
+    this.render();
 	},
 
 	render: function(){
+		// var rendered = template({data: this.collection.toJSON()});
+		var single = this.collection.get(this.options.postid);
 		var template = Handlebars.compile($('#entire_posts').html());
-		console.log(this.collection);
-		var rendered = template({data: this.collection.toJSON()});
-
-		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
-		return this;
-		console.log("rendering");
+		var rendered = template(single.toJSON());
+		// this.$el.find("#full_posts_container ul").trigger('reset').html(rendered);
+		console.log(rendered);
+		this.$el.prev().html('');
+    this.$el.html(rendered);
+    return this;
 	},
 
 	
 });
 
 
-
+ // this.$el.find(#full_posts_container);
 
 
 

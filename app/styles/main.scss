@@ -17,6 +17,12 @@ header {
     margin: 0px;
     h1 {
       color: #ff6c00;
+      font-size: 40px;
+    }
+    .fa-home {
+      background-color: #ff6c00;
+      font-size: 32px;
+      border-radius: 8px;
     }
     .style {
       height: 25px; 
@@ -38,10 +44,10 @@ header {
   #main {
     @include span-columns(10);
     @include shift(1);
-    border: solid 1px red;
+    // border: solid 1px red;
     #post_container {
       height: 360px;
-      border: solid 1px red;
+      // border: solid 1px red;
       #post_top {
         @include span-columns(12);
         height: 75px;
@@ -106,7 +112,7 @@ header {
       }
     }
     #post_feed_container {
-      border: solid 1px red;
+      // border: solid 1px red;
       text-align: center;
       ul {
         list-style: none;

@@ -1,6 +1,9 @@
 
 
 var Post = Backbone.Model.extend ({
+	
+	idAttribute: "_id",
+
 	defaults: {
 		title: '',
 		content: '',
@@ -8,7 +11,7 @@ var Post = Backbone.Model.extend ({
 		status: '',
 		author: '',
 		tags: ''
-	},
+	}
 
 
 

@@ -10,6 +10,7 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="../bower_components/normalize-css/normalize.css" />
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -27,6 +28,7 @@
     <header>
         <div class="style"></div>
         <h1>BLOG HEADA!</h1>
+        <a href="{{post_router.navigate''}}"><i class="fa fa-home"></i></a>
     </header>
 
     <div id="blog_container">
@@ -58,6 +60,7 @@
                 <ul></ul>
             </div>
             <div id="full_posts_container">
+                <ul></ul>
             </div>
         </form>
 
@@ -76,14 +79,12 @@
     </script>
 
     <script type="text/x-handlebars-template" id="entire_posts">
-        {{#each data}}
             <li>{{title}}</li>
             <li>{{content}}</li>
             <li>{{date}}</li>
             <li>{{status}}</li>
             <li>{{author}}</li>
             <li>{{tags}}</li>
-        {{/each}}
     </script>
 
     

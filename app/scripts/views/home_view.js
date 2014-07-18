@@ -25,8 +25,6 @@ var AllView = Backbone.View.extend({
 		this.$('#full_posts_container').hide();
     this.$('#post_feed_container').show();
 
-		console.log(this.collection.toJSON());
-
 		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
 		return this;
 
@@ -39,7 +37,7 @@ var AllView = Backbone.View.extend({
 		var post_one = new Post({
 			title: $('#input_title').val(),
 			content: $('#input_post').val(),
-			date: "date",
+			date: "",
 			status: "published",
 			author: $('#input_author').val(),
 			tags: $('#input_tags').val()
