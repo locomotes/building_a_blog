@@ -6,16 +6,16 @@ var PageRouter = Backbone.Router.extend({
   },
  
   home_page: function () {
-    $('#full_posts_container').hide();
-    $('#post_feed_container').show();
+    // $('#full_posts_container').hide();
+    // $('#post_feed_container').show();
     console.log("I'm in the home page");
   },
  
-  posts_page: function () {
-  	new WholePost({ collection: all });
-   //  $('#post_feed_container').hide();
+  posts_page: function (id) {
+  	new WholePost({ postid: id, collection: all });
+   
+ 		// $('#post_feed_container').hide();
    //  $('#full_posts_container').show();
-  
   },
  	
 });
@@ -24,7 +24,12 @@ var PageRouter = Backbone.Router.extend({
 
 
 
+
+
 var Post = Backbone.Model.extend ({
+	
+	idAttribute: "_id",
+
 	defaults: {
 		title: '',
 		content: '',
@@ -32,7 +37,7 @@ var Post = Backbone.Model.extend ({
 		status: '',
 		author: '',
 		tags: ''
-	},
+	}
 
 
 
@@ -60,29 +65,30 @@ var WholePost = Backbone.View.extend({
 		// "click #post_feed_container ul": "fullPost",
 	},
 
-	initialize: function(){
-		console.log("Whole Post Loaded");
-		this.render();
+	initialize: function(a){
 		this.collection.on('change', this.render, this);
     this.collection.on('destroy', this.render, this);
-    console.log("initialize");
+    this.options = a;
+    this.render();
 	},
 
 	render: function(){
+		// var rendered = template({data: this.collection.toJSON()});
+		var single = this.collection.get(this.options.postid);
 		var template = Handlebars.compile($('#entire_posts').html());
-		console.log(this.collection);
-		var rendered = template({data: this.collection.toJSON()});
-
-		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
-		return this;
-		console.log("rendering");
+		var rendered = template(single.toJSON());
+		// this.$el.find("#full_posts_container ul").trigger('reset').html(rendered);
+		console.log(rendered);
+		this.$el.prev().html('');
+    this.$el.html(rendered);
+    return this;
 	},
 
 	
 });
 
 
-
+ // this.$el.find(#full_posts_container);
 
 
 
@@ -156,8 +162,6 @@ var AllView = Backbone.View.extend({
 		this.$('#full_posts_container').hide();
     this.$('#post_feed_container').show();
 
-		console.log(this.collection.toJSON());
-
 		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
 		return this;
 
@@ -170,7 +174,7 @@ var AllView = Backbone.View.extend({
 		var post_one = new Post({
 			title: $('#input_title').val(),
 			content: $('#input_post').val(),
-			date: "date",
+			date: "",
 			status: "published",
 			author: $('#input_author').val(),
 			tags: $('#input_tags').val()
