@@ -19,6 +19,7 @@ var AllView = Backbone.View.extend({
 	},
 
 	render: function(){
+		console.log('Im home');
 		var template = Handlebars.compile($('#posts_list').html());
 		var rendered = template({data: this.collection.toJSON()});
 
@@ -37,8 +38,8 @@ var AllView = Backbone.View.extend({
 		var post_one = new Post({
 			title: $('#input_title').val(),
 			content: $('#input_post').val(),
-			date: "",
-			status: "published",
+			date: new Date().toJSON().slice(0,10),
+			status: "Published",
 			author: $('#input_author').val(),
 			tags: $('#input_tags').val()
 

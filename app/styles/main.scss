@@ -19,11 +19,6 @@ header {
       color: #ff6c00;
       font-size: 40px;
     }
-    .fa-home {
-      background-color: #ff6c00;
-      font-size: 32px;
-      border-radius: 8px;
-    }
     .style {
       height: 25px; 
       width: 100%;
@@ -113,18 +108,52 @@ header {
     }
     #post_feed_container {
       // border: solid 1px red;
-      text-align: center;
       ul {
         list-style: none;
-        padding-left: 0;
-        li {
-          color: #ff6c00;
-          text-decoration: none;
-          a {
-            color: #ff6c00;
-            text-decoration: none;
-            font-size: 40px;
+        padding-left: 0px;
+        .title_container {
+          @include span-columns(12);
+          height: 80px; 
+          border-top: solid 1px grey;
+          li {
+             text-align: center;
+            a {
+              color: #ff6c00;
+              text-decoration: none;
+              font-size: 40px;
+            }
           }
+        }
+      }
+    }
+    #full_posts_container {
+      ul {
+        list-style: none; 
+        padding-left: 0px;
+        .post_info {
+          @include span-columns(12);
+          border: solid 1px blue;
+          .post_info_left {
+            @include span-columns(10);
+            li {
+              display: inline;
+            }
+          }
+          .post_info_right {
+            @include span-columns(2);
+            text-align: right;
+            li {
+              .delete {
+                // @include button(pill);
+              }
+              .fa-home {
+              }
+            }
+          }
+        }
+        .post_and_title {
+          @include span-columns(12);
+          border: solid 1px blue;
         }
       }
     }

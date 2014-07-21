@@ -28,7 +28,6 @@
     <header>
         <div class="style"></div>
         <h1>BLOG HEADA!</h1>
-        <a href="{{post_router.navigate''}}"><i class="fa fa-home"></i></a>
     </header>
 
     <div id="blog_container">
@@ -60,10 +59,12 @@
                 <ul></ul>
             </div>
             <div id="full_posts_container">
-                <ul></ul>
+                <ul>
+                   <!--  <div class="post_info"></div>
+                    <div class="post_and_title"></div> -->
+                </ul>
             </div>
         </form>
-
     </div>
 
     <footer>
@@ -74,17 +75,35 @@
 
     <script type="text/x-handlebars-template" id="posts_list">
         {{#each data}}
-            <li><a id="{{_id}}" href="#">{{title}}</a></li>
+            <div class="title_container">
+                <li>
+                    <a id="{{_id}}" href="#">{{title}}</a>
+                </li>
+            </div>
         {{/each}}
     </script>
 
     <script type="text/x-handlebars-template" id="entire_posts">
-            <li>{{title}}</li>
-            <li>{{content}}</li>
-            <li>{{date}}</li>
-            <li>{{status}}</li>
-            <li>{{author}}</li>
-            <li>{{tags}}</li>
+            <div class="post_info">
+                <div class="post_info_left">
+                    <li>{{status}}</li> by 
+                    <li>{{author}}</li> on
+                    <li>{{date}}</li> catagories: 
+                    <li>{{tags}}</li>
+                </div>
+                <div class="post_info_right"> 
+                    <a href="">
+                        <i class="fa fa-home"></i>
+                    </a>
+                    <button class="delete">
+                        <i class="fa fa-minus-square"></i>
+                    </button>
+                </div> 
+            </div>
+            <div class="post_and_title">
+                <li>{{title}}</li>
+                <li>{{content}}</li>
+            </div>
     </script>
 
     
