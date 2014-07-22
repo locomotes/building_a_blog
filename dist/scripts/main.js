@@ -6,17 +6,29 @@ var PageRouter = Backbone.Router.extend({
   },
  
   home_page: function () {
+
     // $('#full_posts_container').hide();
     // $('#post_feed_container').show();
     // console.log("I'm in the home page");
     new AllView({ collection: all });
+    
+
+
+
+
   },
  
   posts_page: function (id) {
-  	new WholePost({ postid: id, collection: all });
+  	// window.wpost = 
+    new WholePost({ postid: id, collection: all });
+
    
  		// $('#post_feed_container').hide();
    //  $('#full_posts_container').show();
+
+
+
+    // new Close ({ collection: all });
   },
  	
 });
@@ -27,9 +39,11 @@ var PageRouter = Backbone.Router.extend({
 
 
 
-var Post = Backbone.Model.extend ({
-	
-	idAttribute: "_id",
+var Post = Parse.Object.extend ({
+
+	className: "Blog_posts",
+
+	idAttribute: "objectId",
 
 	defaults: {
 		title: '',
@@ -44,9 +58,9 @@ var Post = Backbone.Model.extend ({
 
 });
 
-var ALLposts = Backbone.Collection.extend ({
+var ALLposts = Parse.Collection.extend ({
 	model: Post, 
-	url: "http://tiy-atl-fe-server.herokuapp.com/collections/jblog"
+	
 });
 
 var all = new ALLposts(); 
@@ -73,9 +87,12 @@ var WholePost = Backbone.View.extend({
     this.single = this.collection.get(this.options.postid);
     this.render();
     this.collection.on('destroy', this.render, this);
+    console.log("posts page initialized");
+    this.collection.on('change', this.close, this);
 	},
 
 	render: function(){
+		console.log("I'm in post view");
 		this.$('#full_posts_container').show();
 		this.$('#post_feed_container').hide();
 		// var rendered = template({data: this.collection.toJSON()});
@@ -87,10 +104,10 @@ var WholePost = Backbone.View.extend({
 		this.$el.prev().html('');
     this.$el.find('#full_posts_container ul').html(rendered);
     return this;
+
 	},
 
 	deletePost: function (event) {
-		console.log("test");
 		event.preventDefault();
     event.stopPropagation();
     if (window.confirm("Are you sure you want to delete this post?")) {
@@ -99,10 +116,21 @@ var WholePost = Backbone.View.extend({
       this.single.destroy({success: function () {
         window.post_router.navigate("", { trigger: true });
       }});
-
+      // this.single.on('change', this.unbind, this);
+      // // this.$(WholePost).remove();
+      // this.$el.remove('#full_posts_container ul').html();
 		}
 	}
 });
+
+Backbone.View.prototype.close = function(){
+	console.log("posts view has been destroyed");
+  this.remove();
+  this.unbind();
+  if (this.onClose){
+    this.onClose();
+  }
+}
 
 
  // this.$el.find(#full_posts_container);
@@ -169,7 +197,7 @@ var AllView = Backbone.View.extend({
 		this.render();
 		this.collection.on('change', this.render, this);
     this.collection.on('destroy', this.render, this);
-
+    console.log("home page initialized");
 	},
 
 	render: function(){
@@ -199,9 +227,10 @@ var AllView = Backbone.View.extend({
 
 		});
 
-		all.add(post_one).save();
+		all.add(post_one);
+		post_one.save();
 		
-		console.log('post_one');		
+		// console.log('post_one');		
 
 	},
 
@@ -216,15 +245,17 @@ var AllView = Backbone.View.extend({
 	}
 
 });
+
+
 // var drink_id = $(event.target).attr('id');
 // window.whiskey_router.navigate('#edit/'+drink_id, {trigger: true});
 
 // post_router.navigate''
 
-
+Parse.initialize("cQGSVouVSHtCsQpSv0kuKa7GFm1pya0X0C4uEos9", "Y5Z9J9XWb3DIgBd7KI6qUqZBxw3U15LBRzScQ3Mx");
 
 all.fetch().done(function () {
-	new AllView( { collection: all });
+	// new AllView( { collection: all });
 	window.post_router = new PageRouter();
 	Backbone.history.start();
 
