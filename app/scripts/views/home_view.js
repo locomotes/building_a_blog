@@ -15,7 +15,7 @@ var AllView = Backbone.View.extend({
 		this.render();
 		this.collection.on('change', this.render, this);
     this.collection.on('destroy', this.render, this);
-
+    console.log("home page initialized");
 	},
 
 	render: function(){
@@ -45,9 +45,10 @@ var AllView = Backbone.View.extend({
 
 		});
 
-		all.add(post_one).save();
+		all.add(post_one);
+		post_one.save();
 		
-		console.log('post_one');		
+		// console.log('post_one');		
 
 	},
 
@@ -62,6 +63,8 @@ var AllView = Backbone.View.extend({
 	}
 
 });
+
+
 // var drink_id = $(event.target).attr('id');
 // window.whiskey_router.navigate('#edit/'+drink_id, {trigger: true});
 

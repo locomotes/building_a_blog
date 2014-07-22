@@ -1,8 +1,10 @@
 
 
-var Post = Backbone.Model.extend ({
-	
-	idAttribute: "_id",
+var Post = Parse.Object.extend ({
+
+	className: "Blog_posts",
+
+	idAttribute: "objectId",
 
 	defaults: {
 		title: '',
@@ -17,9 +19,9 @@ var Post = Backbone.Model.extend ({
 
 });
 
-var ALLposts = Backbone.Collection.extend ({
+var ALLposts = Parse.Collection.extend ({
 	model: Post, 
-	url: "http://tiy-atl-fe-server.herokuapp.com/collections/jblog"
+	
 });
 
 var all = new ALLposts(); 

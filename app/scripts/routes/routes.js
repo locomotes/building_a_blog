@@ -6,17 +6,29 @@ var PageRouter = Backbone.Router.extend({
   },
  
   home_page: function () {
+
     // $('#full_posts_container').hide();
     // $('#post_feed_container').show();
     // console.log("I'm in the home page");
     new AllView({ collection: all });
+    
+
+
+
+
   },
  
   posts_page: function (id) {
-  	new WholePost({ postid: id, collection: all });
+  	// window.wpost = 
+    new WholePost({ postid: id, collection: all });
+
    
  		// $('#post_feed_container').hide();
    //  $('#full_posts_container').show();
+
+
+
+    // new Close ({ collection: all });
   },
  	
 });

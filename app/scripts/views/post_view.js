@@ -14,9 +14,12 @@ var WholePost = Backbone.View.extend({
     this.single = this.collection.get(this.options.postid);
     this.render();
     this.collection.on('destroy', this.render, this);
+    console.log("posts page initialized");
+    this.collection.on('change', this.close, this);
 	},
 
 	render: function(){
+		console.log("I'm in post view");
 		this.$('#full_posts_container').show();
 		this.$('#post_feed_container').hide();
 		// var rendered = template({data: this.collection.toJSON()});
@@ -28,10 +31,10 @@ var WholePost = Backbone.View.extend({
 		this.$el.prev().html('');
     this.$el.find('#full_posts_container ul').html(rendered);
     return this;
+
 	},
 
 	deletePost: function (event) {
-		console.log("test");
 		event.preventDefault();
     event.stopPropagation();
     if (window.confirm("Are you sure you want to delete this post?")) {
@@ -40,10 +43,21 @@ var WholePost = Backbone.View.extend({
       this.single.destroy({success: function () {
         window.post_router.navigate("", { trigger: true });
       }});
-
+      // this.single.on('change', this.unbind, this);
+      // // this.$(WholePost).remove();
+      // this.$el.remove('#full_posts_container ul').html();
 		}
 	}
 });
+
+Backbone.View.prototype.close = function(){
+	console.log("posts view has been destroyed");
+  this.remove();
+  this.unbind();
+  if (this.onClose){
+    this.onClose();
+  }
+}
 
 
  // this.$el.find(#full_posts_container);
