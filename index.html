@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="styles/main.css">
 
     <script src="scripts/vendor/modernizr.js"></script>
+
+    <!-- parse -->
+    <script src="//www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+
   </head>
   <body>
 
@@ -68,7 +72,7 @@
         {{#each data}}
             <div class="title_container">
                 <li>
-                    <a id="{{_id}}" href="#">{{title}}</a>
+                    <a id="{{objectId}}" href="#">{{title}}</a>
                 </li>
             </div>
         {{/each}}
