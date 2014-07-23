@@ -4,19 +4,9 @@ Parse.initialize("cQGSVouVSHtCsQpSv0kuKa7GFm1pya0X0C4uEos9", "Y5Z9J9XWb3DIgBd7KI
 var all = new ALLposts(); 
 
 
-all.fetch().done(function () {
-	// new AllView( { collection: all });
-	window.post_router = new PageRouter();
-	Backbone.history.start();
-
-});
-
-
-
-
 var AppView = function (){
   this.showView = function(view) {
-  	console.log(this.showView);
+    console.log(this.showView);
     if (this.currentView){
       this.currentView.remove();
     }
@@ -28,4 +18,16 @@ var AppView = function (){
   }
 
 }
+
+all.fetch().done(function () {
+	// new AllView( { collection: all });
+	window.post_router = new PageRouter();
+	Backbone.history.start();
+
+});
+
+
+
+
+
 

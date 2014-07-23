@@ -5,8 +5,9 @@ var PageRouter = Backbone.Router.extend({
     "posts_page/:id": "posts_page"
   },
  
-  intialize: function () {
+  initialize: function () {
     this.appView = new AppView();
+    console.log(this.appView);
   },
 
   home_page: function () {
