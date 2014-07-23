@@ -16,6 +16,7 @@ var AllView = Backbone.View.extend({
 		this.collection.on('change', this.render, this);
     this.collection.on('destroy', this.render, this);
     console.log("home page initialized");
+    this.collection.on('add', this.render, this);
 	},
 
 	render: function(){
@@ -26,7 +27,7 @@ var AllView = Backbone.View.extend({
 		this.$('#full_posts_container').hide();
     this.$('#post_feed_container').show();
 
-		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
+		this.$el.find("#post_feed_container ul").html(rendered);
 		return this;
 
 
@@ -45,11 +46,14 @@ var AllView = Backbone.View.extend({
 
 		});
 
-		all.add(post_one);
-		post_one.save();
-		
-		// console.log('post_one');		
+		post_one.save(null, {
+			success: function(post_one) {
+				all.add(post_one);
+				$('#main').trigger('reset');
+			}
+		});
 
+			
 	},
 
 	

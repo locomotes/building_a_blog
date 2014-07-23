@@ -1,5 +1,9 @@
 Parse.initialize("cQGSVouVSHtCsQpSv0kuKa7GFm1pya0X0C4uEos9", "Y5Z9J9XWb3DIgBd7KI6qUqZBxw3U15LBRzScQ3Mx");
 
+
+var all = new ALLposts(); 
+
+
 all.fetch().done(function () {
 	// new AllView( { collection: all });
 	window.post_router = new PageRouter();
@@ -10,9 +14,18 @@ all.fetch().done(function () {
 
 
 
+var AppView = function (){
+  this.showView = function(view) {
+  	console.log(this.showView);
+    if (this.currentView){
+      this.currentView.remove();
+    }
 
-// whiskey_list.fetch().done( function (){
-//   // Define Global Router && Start History
-//   window.whiskey_router = new WhiskeyRouter();
-//   Backbone.history.start();
-// });
+    this.currentView = view;
+    this.currentView.render();
+
+    $('#zombie').html(this.currentView.el);
+  }
+
+}
+

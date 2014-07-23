@@ -2,37 +2,30 @@ var PageRouter = Backbone.Router.extend({
  
   routes: {
     "": "home_page",
-    "posts_page/:id": "posts_page",
+    "posts_page/:id": "posts_page"
   },
  
+  intialize: function () {
+    this.appView = new AppView();
+  },
+
   home_page: function () {
 
-    // $('#full_posts_container').hide();
-    // $('#post_feed_container').show();
-    // console.log("I'm in the home page");
-    new AllView({ collection: all });
-    
-
-
-
+    var homeview = new AllView({ collection: all });
+    this.appView.showView(homeview);
 
   },
  
   posts_page: function (id) {
   	// window.wpost = 
-    new WholePost({ postid: id, collection: all });
+    var postview = new WholePost({ postid: id, collection: all });
+    this.appView.showView(postview);
 
-   
- 		// $('#post_feed_container').hide();
-   //  $('#full_posts_container').show();
-
-
-
-    // new Close ({ collection: all });
-  },
+  }
  	
 });
  
+
 
 
 
@@ -59,11 +52,11 @@ var Post = Parse.Object.extend ({
 });
 
 var ALLposts = Parse.Collection.extend ({
-	model: Post, 
+	model: Post 
 	
 });
-
-var all = new ALLposts(); 
+// 
+// var all = new ALLposts(); 
 
 
 
@@ -88,7 +81,7 @@ var WholePost = Backbone.View.extend({
     this.render();
     this.collection.on('destroy', this.render, this);
     console.log("posts page initialized");
-    this.collection.on('change', this.close, this);
+    // this.collection.on('change', this.close, this);
 	},
 
 	render: function(){
@@ -123,14 +116,14 @@ var WholePost = Backbone.View.extend({
 	}
 });
 
-Backbone.View.prototype.close = function(){
-	console.log("posts view has been destroyed");
-  this.remove();
-  this.unbind();
-  if (this.onClose){
-    this.onClose();
-  }
-}
+// Backbone.View.prototype.close = function(){
+// 	console.log("posts view has been destroyed");
+//   this.remove();
+//   this.unbind();
+//   if (this.onClose){
+//     this.onClose();
+//   }
+// }
 
 
  // this.$el.find(#full_posts_container);
@@ -198,6 +191,7 @@ var AllView = Backbone.View.extend({
 		this.collection.on('change', this.render, this);
     this.collection.on('destroy', this.render, this);
     console.log("home page initialized");
+    this.collection.on('add', this.render, this);
 	},
 
 	render: function(){
@@ -208,7 +202,7 @@ var AllView = Backbone.View.extend({
 		this.$('#full_posts_container').hide();
     this.$('#post_feed_container').show();
 
-		this.$el.find("#post_feed_container ul").trigger('reset').html(rendered);
+		this.$el.find("#post_feed_container ul").html(rendered);
 		return this;
 
 
@@ -227,11 +221,14 @@ var AllView = Backbone.View.extend({
 
 		});
 
-		all.add(post_one);
-		post_one.save();
-		
-		// console.log('post_one');		
+		post_one.save(null, {
+			success: function(post_one) {
+				all.add(post_one);
+				$('#main').trigger('reset');
+			}
+		});
 
+			
 	},
 
 	
@@ -254,6 +251,10 @@ var AllView = Backbone.View.extend({
 
 Parse.initialize("cQGSVouVSHtCsQpSv0kuKa7GFm1pya0X0C4uEos9", "Y5Z9J9XWb3DIgBd7KI6qUqZBxw3U15LBRzScQ3Mx");
 
+
+var all = new ALLposts(); 
+
+
 all.fetch().done(function () {
 	// new AllView( { collection: all });
 	window.post_router = new PageRouter();
@@ -264,9 +265,18 @@ all.fetch().done(function () {
 
 
 
+var AppView = function (){
+  this.showView = function(view) {
+  	console.log(this.showView);
+    if (this.currentView){
+      this.currentView.remove();
+    }
 
-// whiskey_list.fetch().done( function (){
-//   // Define Global Router && Start History
-//   window.whiskey_router = new WhiskeyRouter();
-//   Backbone.history.start();
-// });
+    this.currentView = view;
+    this.currentView.render();
+
+    $('#zombie').html(this.currentView.el);
+  }
+
+}
+

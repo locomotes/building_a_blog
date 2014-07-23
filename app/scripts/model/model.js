@@ -20,11 +20,11 @@ var Post = Parse.Object.extend ({
 });
 
 var ALLposts = Parse.Collection.extend ({
-	model: Post, 
+	model: Post 
 	
 });
-
-var all = new ALLposts(); 
+// 
+// var all = new ALLposts(); 
 
 
 

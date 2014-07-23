@@ -15,7 +15,7 @@ var WholePost = Backbone.View.extend({
     this.render();
     this.collection.on('destroy', this.render, this);
     console.log("posts page initialized");
-    this.collection.on('change', this.close, this);
+    // this.collection.on('change', this.close, this);
 	},
 
 	render: function(){
@@ -50,14 +50,14 @@ var WholePost = Backbone.View.extend({
 	}
 });
 
-Backbone.View.prototype.close = function(){
-	console.log("posts view has been destroyed");
-  this.remove();
-  this.unbind();
-  if (this.onClose){
-    this.onClose();
-  }
-}
+// Backbone.View.prototype.close = function(){
+// 	console.log("posts view has been destroyed");
+//   this.remove();
+//   this.unbind();
+//   if (this.onClose){
+//     this.onClose();
+//   }
+// }
 
 
  // this.$el.find(#full_posts_container);
