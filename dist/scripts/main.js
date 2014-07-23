@@ -117,17 +117,6 @@ var WholePost = Backbone.View.extend({
 	}
 });
 
-// Backbone.View.prototype.close = function(){
-// 	console.log("posts view has been destroyed");
-//   this.remove();
-//   this.unbind();
-//   if (this.onClose){
-//     this.onClose();
-//   }
-// }
-
-
- // this.$el.find(#full_posts_container);
 
 
 
