@@ -16,7 +16,7 @@
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="../bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
@@ -34,7 +34,6 @@
     </header>
 
     <div id="blog_container">
-
         <form id="main">
             <div id="post_container">
                 <div id="post_top">
@@ -59,7 +58,6 @@
                 </div>  
             </div>
         </form>
-        
         <div id="post_feed_container">
             <ul></ul>
         </div>
@@ -90,9 +88,8 @@
     <script type="text/x-handlebars-template" id="entire_posts">
             <div class="post_info">
                 <div class="post_info_left">
-                    <li>{{status}}</li> by 
-                    <li>{{author}}</li> on
-                    <li>{{date}}</li> catagories: 
+                    <li>{{status}} by</li>  
+                    <li>{{author}} catagories: </li> 
                     <li>{{tags}}</li>
                 </div>
                 <div class="post_info_right"> 
@@ -105,8 +102,9 @@
                 </div> 
             </div>
             <div class="post_and_title">
-                <li>{{title}}</li>
-                <li>{{content}}</li>
+                <li class="title">{{title}}</li>
+                <li class="date">{{date}}</li>
+                <li class="content">{{content}}</li>
             </div>
     </script>
 
