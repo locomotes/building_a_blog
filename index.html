@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles/vendor.css">
 
     <link rel="stylesheet" href="styles/main.css">
-
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
     <script src="scripts/vendor/modernizr.js"></script>
 
     <!-- parse -->
@@ -82,9 +82,8 @@
     <script type="text/x-handlebars-template" id="entire_posts">
             <div class="post_info">
                 <div class="post_info_left">
-                    <li>{{status}}</li> by 
-                    <li>{{author}}</li> on
-                    <li>{{date}}</li> catagories: 
+                    <li>{{status}} by</li>  
+                    <li>{{author}} catagories: </li> 
                     <li>{{tags}}</li>
                 </div>
                 <div class="post_info_right"> 
@@ -97,8 +96,9 @@
                 </div> 
             </div>
             <div class="post_and_title">
-                <li>{{title}}</li>
-                <li>{{content}}</li>
+                <li class="title">{{title}}</li>
+                <li class="date">{{date}}</li>
+                <li class="content">{{content}}</li>
             </div>
     </script>
 
