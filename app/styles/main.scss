@@ -9,13 +9,14 @@ $base-body-color: black;
 $color1: #8ee;
 
 #background {
-  height: 600px;
+  height: 450px;
   // background-color: #3d5c6f;
   background: url(../images/landscape1.jpg) no-repeat center center fixed;
   background-size: cover;
   text-align: center;
   &.no-bg {
     background: none;
+    height: 100px;
   }
   header {
     width: 100%;
@@ -23,12 +24,12 @@ $color1: #8ee;
     margin: 0px;
     height: 60px;
     background-color: rgba(255, 255, 255, .5);
-    border: solid 1px blue;
+    // border: solid 1px blue;
     // position: fixed;
     #header_container {
       @include outer-container;
       height: 60px;
-      border: solid 1px blue;
+      // border: solid 1px blue;
       .modal {
         $modal-padding: 3em;
         $modal-background: $base-body-color;
@@ -212,8 +213,15 @@ $color1: #8ee;
   h1 {
     // color: $color1;
     color: white;
-    font-size: 40px;
+    font-size: 50px;
     margin-top: 90px;
+    font-weight: bold;
+  }
+  .tagline {
+    font-size: 30px;
+    margin-top: 15px;
+    color: white;
+    font-weight: bold;
   }
 }
 
@@ -222,6 +230,7 @@ $color1: #8ee;
   
   #post_feed_container {
   // border: solid 1px red;
+  margin-top: 80px;
     ul {
       list-style: none;
       padding-left: 0px;
@@ -232,7 +241,7 @@ $color1: #8ee;
         li {
            text-align: center;
           a {
-            color: #ff6c00;
+            color: black;
             text-decoration: none;
             font-size: 40px;
           }
@@ -258,13 +267,13 @@ $color1: #8ee;
         .post_info_right {
           @include span-columns(2);
           text-align: right;
-          // li {
-          //   .delete {
-          //     // @include button(pill);
-          //   }
-          //   .fa-home {
-          //   }
-          // }
+          li {
+            .delete {
+              border: 0;
+              background-color: black;
+              color: black;
+            }
+          }
         }
       }
       .post_and_title {
@@ -298,8 +307,9 @@ footer {
   color: $color1;
   text-align: center;
   margin: 0px;
+  margin-top: 40px;
   .style {
-    height: 25px; 
+    height: 5px; 
     width: 100%;
     background-color: $color1;
   }

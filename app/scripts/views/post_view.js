@@ -31,7 +31,8 @@ var WholePost = Backbone.View.extend({
 		this.$el.prev().html('');
     this.$el.find('#full_posts_container ul').html(rendered);
 
-    // $("#background").removeClass(".no-bg");
+    // $("#background").removeClass("no-bg");
+    $("#background").addClass("no-bg");
 
     return this;
 

@@ -3,6 +3,7 @@ var PageRouter = Backbone.Router.extend({
   routes: {
     "": "home_page",
     "posts_page/:id": "posts_page"
+    
   },
  
   initialize: function () {

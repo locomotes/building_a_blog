@@ -29,7 +29,8 @@ var AllView = Backbone.View.extend({
 
 		this.$el.find("#post_feed_container ul").html(rendered);
 
-		// $("#background").addClass(".no-bg");
+		// $("#background").addClass("no-bg");
+		$("#background").removeClass("no-bg");
 
 		return this;
 
