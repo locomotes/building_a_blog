@@ -97,6 +97,9 @@ var WholePost = Backbone.View.extend({
 		
 		this.$el.prev().html('');
     this.$el.find('#full_posts_container ul').html(rendered);
+
+    // $("#background").removeClass(".no-bg");
+
     return this;
 
 	},
@@ -193,6 +196,9 @@ var AllView = Backbone.View.extend({
     this.$('#post_feed_container').show();
 
 		this.$el.find("#post_feed_container ul").html(rendered);
+
+		// $("#background").addClass(".no-bg");
+
 		return this;
 
 

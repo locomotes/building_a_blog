@@ -19,15 +19,21 @@
   </head>
   <body>
 
-    
+    <div id="background">
+
     <header>
-        <div class="style"></div>
-        <h1>BLOG HEADA!</h1>
-    </header>
+        <div id="header_container">
 
-    <div id="blog_container">
-
-        <form id="main">
+            <div class="modal">
+                <label for="modal-1">
+                <div class="btn js-btn">Click for Modal</div>
+                </label>
+                <input class="modal-state" id="modal-1" type="checkbox" />
+                <div class="modal-window">
+                <div class="modal-inner">
+                  <label class="modal-close" for="modal-1"></label>
+                  
+                  <form id="main">
             <div id="post_container">
                 <div id="post_top">
                     <div id="title">
@@ -51,6 +57,17 @@
                 </div>  
             </div>
         </form>
+                  
+                </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <h1>BLOG HEADA!</h1>
+
+    </div>
+
+    <div id="blog_container">
         
         <div id="post_feed_container">
             <ul></ul>
