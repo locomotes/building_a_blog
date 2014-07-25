@@ -1,15 +1,17 @@
  // Bourbon & Neat
 @import '../../bower_components/bourbon/dist/bourbon';
+@import '../../bower_components/bitters/app/assets/stylesheets/base';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
+
 // Custom Styles
-
-
+$base-body-color: black;
+$color1: #8ee;
 
 #background {
   height: 600px;
   // background-color: #3d5c6f;
-  background: url(../images/background8.jpg) no-repeat center center fixed;
+  background: url(../images/landscape1.jpg) no-repeat center center fixed;
   background-size: cover;
   text-align: center;
   &.no-bg {
@@ -19,12 +21,197 @@
     width: 100%;
     text-align: center;
     margin: 0px;
-    height: 100px;
-    // background-color: rgba(255, 255, 255, .5);
+    height: 60px;
+    background-color: rgba(255, 255, 255, .5);
     border: solid 1px blue;
+    // position: fixed;
+    #header_container {
+      @include outer-container;
+      height: 60px;
+      border: solid 1px blue;
+      .modal {
+        $modal-padding: 3em;
+        $modal-background: $base-body-color;
+        $modal-close-color: $light-gray;
+        $modal-image-height: 135px;
+        $modal-image-width: $modal-image-height;
+        label {
+          cursor: pointer;
+          margin-bottom: 0;
+        }
+
+        label img {
+          $img-width: 300px;
+          border-radius: $img-width/2;
+          display: block;
+          max-width: $img-width;
+        }
+
+        input[type="checkbox"] {
+          display: none;
+        }
+
+        .btn {
+          // @include button(simple, $base-body-color);
+          // font-size: $base-font-size;
+          // margin-bottom: $base-line-height;
+          height: 50px;
+          width: 50px; 
+          border: solid 3px #8ee;
+          border-radius: 50px;
+          text-align: center;
+          margin-top: 3px;
+          float: left;
+          .fa-plus-circle {
+            color: black;
+            font-size: 38px;
+            margin-top: 5px;
+          }
+        }
+        
+
+        .modal-open {
+          overflow: hidden;
+        }
+
+        .modal-window { // overlay
+          @include transition(opacity .25s ease);
+          @include position(fixed, 0px 0px 0px 0px);
+          background: rgba(0,0,0, .85);
+          opacity: 0;
+          text-align: center;
+          visibility: hidden;
+          z-index: 99999999999;
+
+          .modal-bg {
+            @include position(absolute, 0px 0px 0px 0px);
+            cursor: pointer;
+          }
+        }
+
+        .modal-close {
+          @include position(absolute, ($modal-padding /2) ($modal-padding /2) 0 0);
+          @include size(1.5em);
+          cursor: pointer;
+          background: $modal-background;
+
+          &:after,
+          &:before {
+            @include position(absolute, 3px 3px 0 50%);
+            @include transform(rotate(45deg));
+            @include size(.15em 1.5em);
+            background: $modal-close-color;
+            content: '';
+            display: block;
+            margin: -3px 0 0 -1px;
+          }
+
+          &:hover:after,
+          &:hover:before {
+            background: darken($modal-close-color, 10);
+          }
+
+          &:before {
+            @include transform(rotate(-45deg));
+          }
+        }
+
+        .modal-inner {
+          @include transition(opacity .25s ease);
+          border-radius: $base-border-radius;
+          background: $modal-background;
+          margin: auto;
+          max-height: 95%;
+          position: relative;
+          overflow: auto;
+          width: 95%;
+          padding: $modal-padding /2;
+          margin-top: .6em;
+          #post_container {
+            text-align: center;
+            #input_title {
+              width: 100%;
+            }
+            #input_author {
+              width: 100%;
+              margin-top: 10px;
+            }
+            #input_post {
+              width: 100%;
+              height: 100px;
+              margin-top: 10px;
+            }
+            #input_tags {
+              width: 100%;
+              margin-top: 10px;
+              margin-bottom: 10px;
+            }
+          }
+
+          @include media($medium-screen) {
+            padding: $modal-padding;
+            width: 60%;
+            max-height: 60%;
+            margin-top: 10em;
+          }
+
+          @include media($large-screen) {
+            width: 50%;
+            margin-top: 10em;
+
+          }
+
+
+          
+
+            &.intro {
+              color: $blue;
+              line-height: 1.6em;
+            }
+
+            &.body { 
+              color: $base-font-color;
+              line-height: 1.45em;
+
+              @include media($medium-screen) {
+                @include columns(2 8em);
+              }
+            }
+          
+
+          a.cta {
+            color: white;
+            display: inline-block;
+            margin-right: .5em;
+            margin-top: 1em;
+
+            &:last-child {
+              padding: 0 2em;
+            }
+          }
+        }
+
+        .modal-state:checked + .modal-window {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .modal-state:checked + .modal-window .modal-inner {
+          top: 0;
+        }
+      }
+      // Based on code by Kasper Mikiewicz
+    }
+  }
+  .co_name {
+    color: black;
+    float: right; 
+    font-size: 32px;
+    margin-top: 3px;
   }
   h1 {
-    color: #ff6c00;
+    // color: $color1;
+    color: white;
     font-size: 40px;
     margin-top: 90px;
   }
@@ -32,77 +219,7 @@
 
 #blog_container {
   @include outer-container;
-  #main {
-    @include span-columns(10);
-    @include shift(1);
-    // border: solid 1px red;
-    #post_container {
-      height: 360px;
-      // border: solid 1px red;
-      #post_top {
-        @include span-columns(12);
-        height: 75px;
-        // background-color: #339a63;
-        background-color:#a0b0c1;
-        #title {
-          @include span-columns(6);
-          height: 65px; 
-          float: left;
-          margin-top: 5px;
-          margin-left: 5px;
-          #input_title {
-            height: 40px;
-            width: 100%;
-          }
-        }
-        #author {
-          @include span-columns(3);
-          height: 65px; 
-          float: right;
-          margin-right: 5px;
-          margin-top: 5px;
-          #input_author {
-            height: 40px;
-            width: 100%;
-          }
-        }
-      }
-      #post_mid {
-        @include span-columns(12);
-        height: 200px;
-        #input_post {
-            height: 200px;
-            width: 100%;
-        }
-      }
-      #post_bottom {
-        @include span-columns(12);
-        height: 85px;
-        background-color:#a0b0c1;
-        #tags {
-          @include span-columns(8);
-          margin-top: 15px;
-          height: 65px; 
-          float: left;
-          margin-left: 5px;
-          #input_tags {
-            height: 40px;
-            width: 100%;
-          }
-        }
-        #create {
-          @include span-columns(2);
-          margin-top: 15px;
-          height: 65px; 
-          float: right;
-          text-align: center;
-          #create_button {
-            @include button(pill);
-          }
-        }
-      }
-    }
-  }
+  
   #post_feed_container {
   // border: solid 1px red;
     ul {
@@ -177,14 +294,13 @@ footer {
   width: 100%;
   height: 150px;
   // background-color: #42a2ce;
-  background-color: #555555;
-  color: white;
+  background-color: black;
+  color: $color1;
   text-align: center;
   margin: 0px;
   .style {
     height: 25px; 
     width: 100%;
-    background-color: #99cfa9;
-    border-bottom: solid 2px #ff6c00;
+    background-color: $color1;
   }
 }

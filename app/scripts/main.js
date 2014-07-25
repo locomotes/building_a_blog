@@ -29,5 +29,61 @@ all.fetch().done(function () {
 
 
 
+ $('#main').on('submit', function() {
+
+    var post_one = new Post({
+      title: $('#input_title').val(),
+      content: $('#input_post').val(),
+      date: new Date().toJSON().slice(0,10),
+      status: "Published",
+      author: $('#input_author').val(),
+      tags: $('#input_tags').val()
+      
+
+    });
+
+    post_one.save(null, {
+      success: function(post_one) {
+        alert("success");
+        all.add(post_one);
+        $('#main').trigger('reset');
+      }
+    });
+
+      
+  });
+
+// "submit #main": "publishPost",
+
+// publishPost: function(e){
+//     alert("in publish post function");
+//     e.preventDefault();
+
+//     $('#main').on('submit');
+
+//     var post_one = new Post({
+//       title: $('#input_title').val(),
+//       content: $('#input_post').val(),
+//       date: new Date().toJSON().slice(0,10),
+//       status: "Published",
+//       author: $('#input_author').val(),
+//       tags: $('#input_tags').val()
+      
+
+//     });
+
+//     post_one.save(null, {
+//       success: function(post_one) {
+//         alert("success");
+//         all.add(post_one);
+//         $('#main').trigger('reset');
+//       }
+//     });
+
+      
+//   },
+
+
+
 
 
