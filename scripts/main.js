@@ -3,6 +3,7 @@ var PageRouter = Backbone.Router.extend({
   routes: {
     "": "home_page",
     "posts_page/:id": "posts_page"
+    
   },
  
   initialize: function () {
@@ -98,7 +99,8 @@ var WholePost = Backbone.View.extend({
 		this.$el.prev().html('');
     this.$el.find('#full_posts_container ul').html(rendered);
 
-    // $("#background").removeClass(".no-bg");
+    // $("#background").removeClass("no-bg");
+    $("#background").addClass("no-bg");
 
     return this;
 
@@ -174,7 +176,7 @@ var AllView = Backbone.View.extend({
 
 	events: {
 
-		"click #create_button": "publishPost",
+		
 		"click #post_feed_container ul a": "wholePost"
 
 	},
@@ -197,35 +199,15 @@ var AllView = Backbone.View.extend({
 
 		this.$el.find("#post_feed_container ul").html(rendered);
 
-		// $("#background").addClass(".no-bg");
+		// $("#background").addClass("no-bg");
+		$("#background").removeClass("no-bg");
 
 		return this;
 
 
 	},
 
-	publishPost: function(e){
-	e.preventDefault();
-
-		var post_one = new Post({
-			title: $('#input_title').val(),
-			content: $('#input_post').val(),
-			date: new Date().toJSON().slice(0,10),
-			status: "Published",
-			author: $('#input_author').val(),
-			tags: $('#input_tags').val()
-
-		});
-
-		post_one.save(null, {
-			success: function(post_one) {
-				all.add(post_one);
-				$('#main').trigger('reset');
-			}
-		});
-
-			
-	},
+	
 
 	
 
@@ -273,6 +255,62 @@ all.fetch().done(function () {
 
 });
 
+
+
+
+ $('#main').on('submit', function() {
+
+    var post_one = new Post({
+      title: $('#input_title').val(),
+      content: $('#input_post').val(),
+      date: new Date().toJSON().slice(0,10),
+      status: "Published",
+      author: $('#input_author').val(),
+      tags: $('#input_tags').val()
+      
+
+    });
+
+    post_one.save(null, {
+      success: function(post_one) {
+        alert("success");
+        all.add(post_one);
+        $('#main').trigger('reset');
+      }
+    });
+
+      
+  });
+
+// "submit #main": "publishPost",
+
+// publishPost: function(e){
+//     alert("in publish post function");
+//     e.preventDefault();
+
+//     $('#main').on('submit');
+
+//     var post_one = new Post({
+//       title: $('#input_title').val(),
+//       content: $('#input_post').val(),
+//       date: new Date().toJSON().slice(0,10),
+//       status: "Published",
+//       author: $('#input_author').val(),
+//       tags: $('#input_tags').val()
+      
+
+//     });
+
+//     post_one.save(null, {
+//       success: function(post_one) {
+//         alert("success");
+//         all.add(post_one);
+//         $('#main').trigger('reset');
+//       }
+//     });
+
+      
+//   },
 
 
 
