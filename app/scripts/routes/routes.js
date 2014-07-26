@@ -2,8 +2,8 @@ var PageRouter = Backbone.Router.extend({
  
   routes: {
     "": "home_page",
-    "posts_page/:id": "posts_page"
-    
+    "posts_page/:id": "posts_page",
+    "login/": "login_page"
   },
  
   initialize: function () {
@@ -12,7 +12,6 @@ var PageRouter = Backbone.Router.extend({
   },
 
   home_page: function () {
-
     var homeview = new AllView({ collection: all });
     this.appView.showView(homeview);
 
@@ -23,8 +22,13 @@ var PageRouter = Backbone.Router.extend({
     var postview = new WholePost({ postid: id, collection: all });
     this.appView.showView(postview);
 
+  },
+
+ 	login_page: function () {
+    var login = new SignIn();
+    this.appView.showView(login);
   }
- 	
+
 });
  
 

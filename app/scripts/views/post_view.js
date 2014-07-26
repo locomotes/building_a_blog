@@ -22,6 +22,7 @@ var WholePost = Backbone.View.extend({
 		console.log("I'm in post view");
 		this.$('#full_posts_container').show();
 		this.$('#post_feed_container').hide();
+		this.$('#login_container').hide();
 		// var rendered = template({data: this.collection.toJSON()});
 		// var single = this.collection.get(this.options.postid);
 		var template = Handlebars.compile($('#entire_posts').html());

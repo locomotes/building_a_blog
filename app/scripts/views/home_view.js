@@ -26,6 +26,7 @@ var AllView = Backbone.View.extend({
 
 		this.$('#full_posts_container').hide();
     this.$('#post_feed_container').show();
+    this.$('#login_container').hide();
 
 		this.$el.find("#post_feed_container ul").html(rendered);
 
