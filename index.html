@@ -9,6 +9,9 @@
 
     <link rel="stylesheet" href="styles/vendor.css">
 
+    <!-- Google font -->
+    <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
     <script src="scripts/vendor/modernizr.js"></script>
@@ -20,54 +23,54 @@
   <body>
 
     <div id="background">
+        <header>
+            <div id="header_container">
 
-    <header>
-        <div id="header_container">
-
-            <div class="modal">
-                <label for="modal-1">
-                <div class="btn js-btn">
-                    <!-- <i class="fa fa-pencil"></i></div> -->
-                    <i class="fa fa-plus-circle"></i>
-                </label>
-                <input class="modal-state" id="modal-1" type="checkbox" />
-                <div class="modal-window">
-                    <div class="modal-inner">
-                      <label class="modal-close" for="modal-1"></label>
-                      
-                        <form id="main">
-                            <div id="post_container">
-                                <div id="post_top">
-                                    <div id="title">
-                                        <input id="input_title" placeholder="Title" style="text-align: center">
+                <div class="modal">
+                    <label for="modal-1">
+                    <div class="btn js-btn">
+                        <!-- <i class="fa fa-pencil"></i></div> -->
+                        <i class="fa fa-plus-circle"></i>
+                    </label>
+                    <input class="modal-state" id="modal-1" type="checkbox" />
+                    <div class="modal-window">
+                        <div class="modal-inner">
+                        <p class="login">Welcome to </p>
+                          <label class="modal-close" for="modal-1"></label>
+                          
+                            <form id="main">
+                                <div id="post_container">
+                                    <div id="post_top">
+                                        <div id="title">
+                                            <input id="input_title" placeholder="Title" style="text-align: center">
+                                        </div>
+                                        <div id="author">
+                                            <input id="input_author" placeholder="Author" style="text-align: center">
+                                        </div>
                                     </div>
-                                    <div id="author">
-                                        <input id="input_author" placeholder="Author" style="text-align: center">
+                                    <div id="post_mid">
+                                        <textarea id="input_post" placeholder="Post Text Goes Here" style="text-align: center"></textarea>
                                     </div>
+                                    <div id="post_bottom">
+                                        <div id="tags">
+                                            <input id="input_tags" placeholder="Tags, Separated With Commas" style="text-align: center">
+                                        </div>
+                                        <div id="create">
+                                            <button id="create_button">Create Post
+                                            </button>
+                                        </div>
+                                    </div>  
                                 </div>
-                                <div id="post_mid">
-                                    <textarea id="input_post" placeholder="Post Text Goes Here" style="text-align: center"></textarea>
-                                </div>
-                                <div id="post_bottom">
-                                    <div id="tags">
-                                        <input id="input_tags" placeholder="Tags, Separated With Commas" style="text-align: center">
-                                    </div>
-                                    <div id="create">
-                                        <button id="create_button">Create Post
-                                        </button>
-                                    </div>
-                                </div>  
-                            </div>
-                        </form>
+                            </form>
 
+                        </div>
                     </div>
                 </div>
+                <p class="co_name">NAME</p>
             </div>
-            <p class="co_name">NAME</p>
-        </div>
-    </header>
-    <h1>YOUR LIFE IS AMAZING</h1>
-    <P class="tagline">WRITE IT DOWN</P>
+        </header>
+        <h1>YOUR LIFE IS AMAZING</h1>
+        <P class="tagline">WRITE IT DOWN</P>
     </div>
 
     <div id="blog_container">
@@ -78,8 +81,33 @@
         <div id="full_posts_container">
             <ul></ul>
         </div>
-          
+
+     </div>
+
+    <div id="login_container">
+        <p class="co_name">ADVNTUR</p>
+        <div id="login_inner_shell">
+            <form class="form1" >
+                <!-- <p>Signup</p> -->
+                <input class="signup" id="uname" name="uname" placeholder="Name" type=
+                "text">
+                <input class="signup" id="password" name="password" placeholder=
+                "Password" type="text">
+                <input class="signup" id="email" name="email" placeholder="Email" type=
+                "text">
+                <input type="submit" class='signUp' value="Sign Up">
+            </form><br>
+
+            <form class="form2" >
+                <input class="signin" id="rname" name="rname" placeholder="Name" type=
+                "text">
+                <input class="signin" id="rpassword" name="rpassword" placeholder=
+                "Password" type="text">
+                <input type="submit" id='signIn' value="Sign In">
+            </form>
+        </div>
     </div>
+
 
     <div id="zombie"></div>
 
