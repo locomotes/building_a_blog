@@ -1,5 +1,5 @@
 var PageRouter = Backbone.Router.extend({
- 
+
   routes: {
     "": "home_page",
     "posts_page/:id": "posts_page",
@@ -15,6 +15,7 @@ var PageRouter = Backbone.Router.extend({
   home_page: function () {
     console.log(currentUser);
     if(!currentUser) return window.post_router.navigate('login', {trigger: true});
+    showUser(currentUser);
     var homeview = new AllView({ collection: all });
     this.appView.showView(homeview);
 
@@ -31,7 +32,8 @@ var PageRouter = Backbone.Router.extend({
  	login_page: function () {
     if(currentUser) return window.post_router.navigate('', {trigger: true});
     new SignIn();
-    // this.appView.showView(login);
+
+    // this.appView.showView(signIn);
   }
 
 });
@@ -55,7 +57,9 @@ var Post = Parse.Object.extend ({
 		date: '',
 		status: '',
 		author: '',
-		tags: ''
+		tags: '',
+		user: Parse.User.current(),
+		ACL: new Parse.ACL(Parse.User.current())
 	}
 
 
@@ -128,11 +132,14 @@ var SignIn = Backbone.View.extend({
 
 	logInUser: function(e) {
 		console.log('logInUser');
-		e.preventDefault();
+		// e.preventDefault();
+		var myname = $("#rname").val();
+		var mypass = $("#rpassword").val();
 		Parse.User.logIn(myname, mypass, {
 		  success: function(user) {
 		    // Go HOME dude
-		    console.log("Signed In");
+		    window.post_router.navigate("", { trigger: true });
+		    console.log("Im Logged In");
 		  },
 		  error: function(user, error) {
 		    // The login failed. Check error to see why.
@@ -367,12 +374,15 @@ all.fetch().done(function () {
       
   });
 
-// var showUser = function (user) {
-//   var name = user.get('username');
-//   $('.userfield').text(name);
-// };
+var showUser = function (user) {
+  var name = user.get('username');
+  $('#userfield').text(name);
+};
 
-
-
+$('#user_logout button').on('click', function () {
+  Parse.User.logOut();
+  currentUser = Parse.User.current();
+  window.post_router.navigate('login', {trigger: true});
+});
 
 
