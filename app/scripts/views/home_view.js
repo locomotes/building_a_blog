@@ -24,9 +24,9 @@ var AllView = Backbone.View.extend({
 		var template = Handlebars.compile($('#posts_list').html());
 		var rendered = template({data: this.collection.toJSON()});
 
-		this.$('#full_posts_container').hide();
-    this.$('#post_feed_container').show();
-    this.$('#login_container').hide();
+		$('#full_posts_container').hide();
+    $('#post_feed_container').show();
+    $('#login_container').hide();
 
 		this.$el.find("#post_feed_container ul").html(rendered);
 

@@ -2,8 +2,8 @@ var PageRouter = Backbone.Router.extend({
  
   routes: {
     "": "home_page",
-    "posts_page/:id": "posts_page"
-    
+    "posts_page/:id": "posts_page",
+    "login": "login_page"
   },
  
   initialize: function () {
@@ -11,20 +11,28 @@ var PageRouter = Backbone.Router.extend({
     console.log(this.appView);
   },
 
-  home_page: function () {
 
+  home_page: function () {
+    if(!currentUser) return window.post_router.navigate('login', {trigger: true});
     var homeview = new AllView({ collection: all });
     this.appView.showView(homeview);
 
   },
  
   posts_page: function (id) {
+    if(!currentUser) return window.post_router.navigate('login', {trigger: true});
   	// window.wpost = 
     var postview = new WholePost({ postid: id, collection: all });
     this.appView.showView(postview);
 
+  },
+
+ 	login_page: function () {
+    new SignIn();
+    (currentUser) return window.post_router.navigate("", {trigger: true});
+    // this.appView.showView(login);
   }
- 	
+
 });
  
 
@@ -66,6 +74,77 @@ var ALLposts = Parse.Collection.extend ({
 
 
 
+var SignIn = Backbone.View.extend({
+
+	el: '#login_container',
+
+	events: {
+		"submit .form1": 'signUpUser',
+		"submit .form2": 'logInUser'
+	},
+
+	initialize: function(){
+		this.render();
+	},
+
+	render: function() {
+			//if Parse.use
+		console.log("I'm in login view");
+		$('#full_posts_container').hide();
+		$('#post_feed_container').hide();
+		$('#background').hide();
+		$('footer').hide();
+
+		return this;
+	},
+
+
+	signUpUser: function(e) {
+		console.log('inside');
+		// e.preventDefault();
+		var user = new Parse.User();
+		console.log($("#uname").val());
+		user.set("username", $("#uname").val());
+		user.set("password", $("#password").val());
+		user.set("email", $("#email").val());
+
+
+		user.signUp(null, {
+		  success: function(user) {
+		    // Go HOME
+        window.post_router.navigate("", { trigger: true });
+		    console.log('signedUp');
+		  },
+		  error: function(user, error) {
+		    // Show the error message somewhere and let the user try again.
+		    console.log("Error: " + error.code + " " + error.message);
+		  }
+		});
+
+		$(this).trigger('reset');
+	},
+
+	logInUser: function(e) {
+		console.log('logInUser');
+		e.preventDefault();
+		Parse.User.logIn(myname, mypass, {
+		  success: function(user) {
+		    // Go HOME dude
+		    console.log("Signed In");
+		  },
+		  error: function(user, error) {
+		    // The login failed. Check error to see why.
+		  }
+		});
+
+		$(this).trigger('reset');
+	}
+
+
+
+});
+
+
 var WholePost = Backbone.View.extend({
 
 	el: '#blog_container',
@@ -90,6 +169,7 @@ var WholePost = Backbone.View.extend({
 		console.log("I'm in post view");
 		this.$('#full_posts_container').show();
 		this.$('#post_feed_container').hide();
+		this.$('#login_container').hide();
 		// var rendered = template({data: this.collection.toJSON()});
 		// var single = this.collection.get(this.options.postid);
 		var template = Handlebars.compile($('#entire_posts').html());
@@ -194,8 +274,9 @@ var AllView = Backbone.View.extend({
 		var template = Handlebars.compile($('#posts_list').html());
 		var rendered = template({data: this.collection.toJSON()});
 
-		this.$('#full_posts_container').hide();
-    this.$('#post_feed_container').show();
+		$('#full_posts_container').hide();
+    $('#post_feed_container').show();
+    $('#login_container').hide();
 
 		this.$el.find("#post_feed_container ul").html(rendered);
 
@@ -228,6 +309,8 @@ var AllView = Backbone.View.extend({
 // post_router.navigate''
 
 Parse.initialize("cQGSVouVSHtCsQpSv0kuKa7GFm1pya0X0C4uEos9", "Y5Z9J9XWb3DIgBd7KI6qUqZBxw3U15LBRzScQ3Mx");
+
+var currentUser = Parse.User.current();
 
 
 var all = new ALLposts(); 

@@ -1,22 +1,23 @@
 var SignIn = Backbone.View.extend({
 
-	el: '#blog_container',
+	el: '#login_container',
 
 	events: {
-		"submit form": 'signUpUser',
-		"click #signIn": 'loginUser'
+		"submit .form1": 'signUpUser',
+		"submit .form2": 'logInUser'
 	},
 
 	initialize: function(){
-		// this.render();
+		this.render();
 	},
 
 	render: function() {
 			//if Parse.use
 		console.log("I'm in login view");
-		this.$('#full_posts_container').hide();
-		this.$('#post_feed_container').hide();
-		this.$('#login_container').hide();
+		$('#full_posts_container').hide();
+		$('#post_feed_container').hide();
+		$('#background').hide();
+		$('footer').hide();
 
 		return this;
 	},
@@ -26,7 +27,8 @@ var SignIn = Backbone.View.extend({
 		console.log('inside');
 		e.preventDefault();
 		var user = new Parse.User();
-		user.set("username", $("#name").val());
+		console.log($("#uname").val());
+		user.set("username", $("#uname").val());
 		user.set("password", $("#password").val());
 		user.set("email", $("#email").val());
 
@@ -34,6 +36,7 @@ var SignIn = Backbone.View.extend({
 		user.signUp(null, {
 		  success: function(user) {
 		    // Go HOME
+		    currentUser = Parse.User.current();
         window.post_router.navigate("", { trigger: true });
 		    console.log('signedUp');
 		  },
@@ -46,7 +49,7 @@ var SignIn = Backbone.View.extend({
 		$(this).trigger('reset');
 	},
 
-	loginUser: function(e) {
+	logInUser: function(e) {
 		console.log('logInUser');
 		e.preventDefault();
 		Parse.User.logIn(myname, mypass, {
