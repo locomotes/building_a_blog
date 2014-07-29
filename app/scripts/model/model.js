@@ -12,7 +12,9 @@ var Post = Parse.Object.extend ({
 		date: '',
 		status: '',
 		author: '',
-		tags: ''
+		tags: '',
+		user: Parse.User.current(),
+		ACL: new Parse.ACL(Parse.User.current())
 	}
 
 

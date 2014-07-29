@@ -29,8 +29,9 @@ $color1: #8ee;
     #header_container {
       @include outer-container;
       height: 60px;
-      // border: solid 1px blue;
+      // border: solid 1px black;
       .modal {
+        // float: left;
         $modal-padding: 3em;
         $modal-background: $base-body-color;
         $modal-close-color: $light-gray;
@@ -202,13 +203,41 @@ $color1: #8ee;
         }
       }
       // Based on code by Kasper Mikiewicz
+      #co_name_container {
+        height: 56px;
+        width: 124px;
+        margin: 0 auto;
+        .co_name {
+          color: black;
+          // float: right; 
+          font-size: 32px;
+          margin-top: 3px;
+          font-weight: bold;
+          font-family: 'Shadows Into Light Two', cursive;
+        }
+      }
+      #header_user_container {
+        height: 56px;
+        width: 400px;
+        border: solid 1px black;
+        margin-top: -56px;
+        float: right;
+        #user_logout {
+          width: 60px;
+          height: 60px;
+          float: right;
+
+        }
+        #user_info {
+          height:56px;
+          width: 75%;
+          border: solid 1px black;
+          float: right;
+          text-align: right;
+          margin-right: 10px;
+        }
+      }
     }
-  }
-  .co_name {
-    color: black;
-    float: right; 
-    font-size: 32px;
-    margin-top: 3px;
   }
   h1 {
     // color: $color1;

@@ -51,11 +51,14 @@ var SignIn = Backbone.View.extend({
 
 	logInUser: function(e) {
 		console.log('logInUser');
-		e.preventDefault();
+		// e.preventDefault();
+		var myname = $("#rname").val();
+		var mypass = $("#rpassword").val();
 		Parse.User.logIn(myname, mypass, {
 		  success: function(user) {
 		    // Go HOME dude
-		    console.log("Signed In");
+		    window.post_router.navigate("", { trigger: true });
+		    console.log("Im Logged In");
 		  },
 		  error: function(user, error) {
 		    // The login failed. Check error to see why.

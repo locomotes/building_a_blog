@@ -1,5 +1,5 @@
 var PageRouter = Backbone.Router.extend({
- 
+
   routes: {
     "": "home_page",
     "posts_page/:id": "posts_page",
@@ -15,6 +15,7 @@ var PageRouter = Backbone.Router.extend({
   home_page: function () {
     console.log(currentUser);
     if(!currentUser) return window.post_router.navigate('login', {trigger: true});
+    showUser(currentUser);
     var homeview = new AllView({ collection: all });
     this.appView.showView(homeview);
 
@@ -31,7 +32,8 @@ var PageRouter = Backbone.Router.extend({
  	login_page: function () {
     if(currentUser) return window.post_router.navigate('', {trigger: true});
     new SignIn();
-    // this.appView.showView(login);
+
+    // this.appView.showView(signIn);
   }
 
 });

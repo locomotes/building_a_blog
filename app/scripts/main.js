@@ -55,12 +55,15 @@ all.fetch().done(function () {
       
   });
 
-// var showUser = function (user) {
-//   var name = user.get('username');
-//   $('.userfield').text(name);
-// };
+var showUser = function (user) {
+  var name = user.get('username');
+  $('#userfield').text(name);
+};
 
-
-
+$('#user_logout button').on('click', function () {
+  Parse.User.logOut();
+  currentUser = Parse.User.current();
+  window.post_router.navigate('login', {trigger: true});
+});
 
 
