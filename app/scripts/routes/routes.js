@@ -8,12 +8,10 @@ var PageRouter = Backbone.Router.extend({
  
   initialize: function () {
     this.appView = new AppView();
-    console.log(this.appView);
   },
 
 
   home_page: function () {
-    console.log(currentUser);
     if(!currentUser) return window.post_router.navigate('login', {trigger: true});
     showUser(currentUser);
     var homeview = new AllView({ collection: all });

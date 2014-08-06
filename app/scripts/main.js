@@ -8,7 +8,6 @@ var all = new ALLposts();
 
 var AppView = function (){
   this.showView = function(view) {
-    console.log(this.showView);
     if (this.currentView){
       this.currentView.remove();
     }
@@ -18,7 +17,6 @@ var AppView = function (){
 
     $('#zombie').html(this.currentView.el);
   }
-
 }
 
 all.fetch().done(function () {
@@ -31,29 +29,27 @@ all.fetch().done(function () {
 
 
 
- $('#main').on('submit', function() {
+$('#main').on('submit', function() {
 
-    var post_one = new Post({
-      title: $('#input_title').val(),
-      content: $('#input_post').val(),
-      date: new Date().toJSON().slice(0,10),
-      status: "Published",
-      author: $('#input_author').val(),
-      tags: $('#input_tags').val()
-      
-
-    });
-
-    post_one.save(null, {
-      success: function(post_one) {
-        alert("success");
-        all.add(post_one);
-        $('#main').trigger('reset');
-      }
-    });
-
-      
+  var post_one = new Post({
+    title: $('#input_title').val(),
+    content: $('#input_post').val(),
+    date: new Date().toJSON().slice(0,10),
+    status: "Published",
+    author: $('#input_author').val(),
+    tags: $('#input_tags').val(),
+    user: Parse.User.current(),
+    ACL: new Parse.ACL(Parse.User.current())
   });
+
+  post_one.save(null, {
+    success: function(post_one) {
+      alert("success");
+      all.add(post_one);
+      $('#main').trigger('reset');
+    }
+  });
+});
 
 var showUser = function (user) {
   var name = user.get('username');
@@ -66,4 +62,5 @@ $('#user_logout button').on('click', function () {
   window.post_router.navigate('login', {trigger: true});
 });
 
+console.log(currentUser);
 

@@ -9,11 +9,10 @@ var SignIn = Backbone.View.extend({
 
 	initialize: function(){
 		this.render();
+		console.log('loginview initialized');
 	},
 
 	render: function() {
-			//if Parse.use
-		console.log("I'm in login view");
 		$('#full_posts_container').hide();
 		$('#post_feed_container').hide();
 		$('#background').hide();
@@ -24,7 +23,6 @@ var SignIn = Backbone.View.extend({
 
 
 	signUpUser: function(e) {
-		console.log('inside');
 		e.preventDefault();
 		var user = new Parse.User();
 		console.log($("#uname").val());
@@ -50,8 +48,7 @@ var SignIn = Backbone.View.extend({
 	},
 
 	logInUser: function(e) {
-		console.log('logInUser');
-		// e.preventDefault();
+		e.preventDefault();
 		var myname = $("#rname").val();
 		var mypass = $("#rpassword").val();
 		Parse.User.logIn(myname, mypass, {

@@ -14,7 +14,7 @@ var WholePost = Backbone.View.extend({
     this.single = this.collection.get(this.options.postid);
     this.render();
     this.collection.on('destroy', this.render, this);
-    console.log("posts page initialized");
+    console.log('posts page initialized');
     // this.collection.on('change', this.close, this);
 	},
 

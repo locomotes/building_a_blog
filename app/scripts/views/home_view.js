@@ -17,6 +17,7 @@ var AllView = Backbone.View.extend({
     this.collection.on('destroy', this.render, this);
     console.log("home page initialized");
     this.collection.on('add', this.render, this);
+    console.log('loginview initialized');
 	},
 
 	render: function(){

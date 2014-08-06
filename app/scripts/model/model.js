@@ -12,9 +12,8 @@ var Post = Parse.Object.extend ({
 		date: '',
 		status: '',
 		author: '',
-		tags: '',
-		user: Parse.User.current(),
-		ACL: new Parse.ACL(Parse.User.current())
+		tags: ''
+
 	}
 
 
@@ -25,8 +24,7 @@ var ALLposts = Parse.Collection.extend ({
 	model: Post 
 	
 });
-// 
-// var all = new ALLposts(); 
+
 
 
 
