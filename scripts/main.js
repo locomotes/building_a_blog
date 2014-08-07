@@ -8,12 +8,10 @@ var PageRouter = Backbone.Router.extend({
  
   initialize: function () {
     this.appView = new AppView();
-    console.log(this.appView);
   },
 
 
   home_page: function () {
-    console.log(currentUser);
     if(!currentUser) return window.post_router.navigate('login', {trigger: true});
     showUser(currentUser);
     var homeview = new AllView({ collection: all });
@@ -33,7 +31,6 @@ var PageRouter = Backbone.Router.extend({
     if(currentUser) return window.post_router.navigate('', {trigger: true});
     new SignIn();
 
-    // this.appView.showView(signIn);
   }
 
 });
@@ -57,9 +54,8 @@ var Post = Parse.Object.extend ({
 		date: '',
 		status: '',
 		author: '',
-		tags: '',
-		user: Parse.User.current(),
-		ACL: new Parse.ACL(Parse.User.current())
+		tags: ''
+
 	}
 
 
@@ -70,8 +66,7 @@ var ALLposts = Parse.Collection.extend ({
 	model: Post 
 	
 });
-// 
-// var all = new ALLposts(); 
+
 
 
 
@@ -90,22 +85,22 @@ var SignIn = Backbone.View.extend({
 
 	initialize: function(){
 		this.render();
+		console.log('loginview initialized');
 	},
 
 	render: function() {
-			//if Parse.use
-		console.log("I'm in login view");
 		$('#full_posts_container').hide();
 		$('#post_feed_container').hide();
 		$('#background').hide();
 		$('footer').hide();
+
+		$('#login_container').show();
 
 		return this;
 	},
 
 
 	signUpUser: function(e) {
-		console.log('inside');
 		e.preventDefault();
 		var user = new Parse.User();
 		console.log($("#uname").val());
@@ -131,13 +126,13 @@ var SignIn = Backbone.View.extend({
 	},
 
 	logInUser: function(e) {
-		console.log('logInUser');
-		// e.preventDefault();
+		e.preventDefault();
 		var myname = $("#rname").val();
 		var mypass = $("#rpassword").val();
 		Parse.User.logIn(myname, mypass, {
 		  success: function(user) {
 		    // Go HOME dude
+		    currentUser = Parse.User.current();
 		    window.post_router.navigate("", { trigger: true });
 		    console.log("Im Logged In");
 		  },
@@ -170,7 +165,7 @@ var WholePost = Backbone.View.extend({
     this.single = this.collection.get(this.options.postid);
     this.render();
     this.collection.on('destroy', this.render, this);
-    console.log("posts page initialized");
+    console.log('posts page initialized');
     // this.collection.on('change', this.close, this);
 	},
 
@@ -276,6 +271,7 @@ var AllView = Backbone.View.extend({
     this.collection.on('destroy', this.render, this);
     console.log("home page initialized");
     this.collection.on('add', this.render, this);
+    console.log('loginview initialized');
 	},
 
 	render: function(){
@@ -286,6 +282,8 @@ var AllView = Backbone.View.extend({
 		$('#full_posts_container').hide();
     $('#post_feed_container').show();
     $('#login_container').hide();
+    $('#background').show();
+		$('footer').show();
 
 		this.$el.find("#post_feed_container ul").html(rendered);
 
@@ -327,7 +325,6 @@ var all = new ALLposts();
 
 var AppView = function (){
   this.showView = function(view) {
-    console.log(this.showView);
     if (this.currentView){
       this.currentView.remove();
     }
@@ -337,7 +334,6 @@ var AppView = function (){
 
     $('#zombie').html(this.currentView.el);
   }
-
 }
 
 all.fetch().done(function () {
@@ -350,29 +346,27 @@ all.fetch().done(function () {
 
 
 
- $('#main').on('submit', function() {
+$('#main').on('submit', function() {
 
-    var post_one = new Post({
-      title: $('#input_title').val(),
-      content: $('#input_post').val(),
-      date: new Date().toJSON().slice(0,10),
-      status: "Published",
-      author: $('#input_author').val(),
-      tags: $('#input_tags').val()
-      
-
-    });
-
-    post_one.save(null, {
-      success: function(post_one) {
-        alert("success");
-        all.add(post_one);
-        $('#main').trigger('reset');
-      }
-    });
-
-      
+  var post_one = new Post({
+    title: $('#input_title').val(),
+    content: $('#input_post').val(),
+    date: new Date().toJSON().slice(0,10),
+    status: "Published",
+    author: $('#input_author').val(),
+    tags: $('#input_tags').val(),
+    user: Parse.User.current(),
+    ACL: new Parse.ACL(Parse.User.current())
   });
+
+  post_one.save(null, {
+    success: function(post_one) {
+      alert("success");
+      all.add(post_one);
+      $('#main').trigger('reset');
+    }
+  });
+});
 
 var showUser = function (user) {
   var name = user.get('username');
@@ -385,4 +379,5 @@ $('#user_logout button').on('click', function () {
   window.post_router.navigate('login', {trigger: true});
 });
 
+console.log(currentUser);
 
