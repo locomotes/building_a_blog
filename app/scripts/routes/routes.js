@@ -31,7 +31,6 @@ var PageRouter = Backbone.Router.extend({
     if(currentUser) return window.post_router.navigate('', {trigger: true});
     new SignIn();
 
-    // this.appView.showView(signIn);
   }
 
 });

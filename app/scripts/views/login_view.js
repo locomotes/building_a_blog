@@ -18,6 +18,8 @@ var SignIn = Backbone.View.extend({
 		$('#background').hide();
 		$('footer').hide();
 
+		$('#login_container').show();
+
 		return this;
 	},
 
@@ -54,6 +56,7 @@ var SignIn = Backbone.View.extend({
 		Parse.User.logIn(myname, mypass, {
 		  success: function(user) {
 		    // Go HOME dude
+		    currentUser = Parse.User.current();
 		    window.post_router.navigate("", { trigger: true });
 		    console.log("Im Logged In");
 		  },
