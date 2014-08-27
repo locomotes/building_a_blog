@@ -103,7 +103,6 @@ var SignIn = Backbone.View.extend({
 	signUpUser: function(e) {
 		e.preventDefault();
 		var user = new Parse.User();
-		console.log($("#uname").val());
 		user.set("username", $("#uname").val());
 		user.set("password", $("#password").val());
 		user.set("email", $("#email").val());
@@ -310,10 +309,6 @@ var AllView = Backbone.View.extend({
 });
 
 
-// var drink_id = $(event.target).attr('id');
-// window.whiskey_router.navigate('#edit/'+drink_id, {trigger: true});
-
-// post_router.navigate''
 
 Parse.initialize("cQGSVouVSHtCsQpSv0kuKa7GFm1pya0X0C4uEos9", "Y5Z9J9XWb3DIgBd7KI6qUqZBxw3U15LBRzScQ3Mx");
 

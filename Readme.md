@@ -20,5 +20,16 @@ You are required to use both Backbone and Handlebars and the actions should be a
 
 Also, use Parse for the backend. 
 
+A completed project looks like the following
+
+1. Ability to add blog posts
+2. Blog posts follow the format that was posted in Monday's homework (title, content, date etc)
+3. Ability to delete a blog post
+4. Ability to click on a blog post title on the home page and be routed to a blog post single page with just that post and content.
+5. A decent layout. Not looking for fancy layout/design but a proper layout using a grid system like Neat is recommended.
+6. Ability to hit a single post URL and have that post show (hint: Routes)
+7. Deployed to Heroku or GH Pages and the link posted below
+
+
 
 
