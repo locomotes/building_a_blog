@@ -27,7 +27,6 @@ var SignIn = Backbone.View.extend({
 	signUpUser: function(e) {
 		e.preventDefault();
 		var user = new Parse.User();
-		console.log($("#uname").val());
 		user.set("username", $("#uname").val());
 		user.set("password", $("#password").val());
 		user.set("email", $("#email").val());

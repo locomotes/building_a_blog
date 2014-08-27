@@ -220,7 +220,7 @@ $color1: #8ee;
       #header_user_container {
         height: 56px;
         width: 400px;
-        border: solid 1px black;
+        // border: solid 1px black;
         margin-top: -56px;
         float: right;
         #user_logout {
@@ -239,10 +239,13 @@ $color1: #8ee;
         #user_info {
           height:56px;
           width: 75%;
-          border: solid 1px black;
+          // border: solid 1px black;
           float: right;
           text-align: right;
           margin-right: 10px;
+          #userfield {
+           margin-top: -12px;
+          }
         }
       }
     }
@@ -292,7 +295,7 @@ $color1: #8ee;
       padding-left: 0px;
       .post_info {
         @include span-columns(12);
-        border: solid 1px blue;
+        // border: solid 1px blue;
         font-size: 20px;
         font-family: Georgia;
         .post_info_left {
@@ -304,18 +307,23 @@ $color1: #8ee;
         .post_info_right {
           @include span-columns(2);
           text-align: right;
-          li {
-            .delete {
-              border: 0;
-              background-color: black;
-              color: black;
+          .delete {
+            border: none;
+            background-color: white;
+            color: black;
+            background: none;
+            outline: 0;
+            cursor: pointer;
+            padding: 5px;
+            .fa-exclamation-triangle {
+              color: #477dca;
             }
           }
         }
       }
       .post_and_title {
         @include span-columns(12);
-        border: solid 1px blue;
+        // border: solid 1px blue;
         margin-top: 40px;
         .title {
           font-size: 55px; 

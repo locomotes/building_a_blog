@@ -56,7 +56,3 @@ var AllView = Backbone.View.extend({
 });
 
 
-// var drink_id = $(event.target).attr('id');
-// window.whiskey_router.navigate('#edit/'+drink_id, {trigger: true});
-
-// post_router.navigate''
